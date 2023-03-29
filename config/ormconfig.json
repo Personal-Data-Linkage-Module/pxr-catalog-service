@@ -1,0 +1,27 @@
+{
+    "name": "postgres",
+    "type": "postgres",
+    "schema": "pxr_catalog",
+    "synchronize": false,
+    "logging": false,
+    "logger": "file",
+    "extra": {
+        "poolSize": 100
+    },
+    "replication": {
+        "master": {
+          "host": "localhost",
+          "port": 5432,
+          "database": "pxr_pod",
+          "username": "pxr_catalog_user",
+          "password": "pxr_password"
+        },
+        "slaves": [{
+          "host": "localhost",
+          "port": 5432,
+          "database": "pxr_pod",
+          "username": "pxr_catalog_user",
+          "password": "pxr_password"
+        }]
+    }
+}

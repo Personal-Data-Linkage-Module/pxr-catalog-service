@@ -1,0 +1,10 @@
+src/tests/CatalogModelRequest.ts
+src/tests/CatalogBuiltInRequest.ts
+src/tests/CatalogExtRequest.ts
+src/tests/CatalogModelUpdateRequest.ts
+src/tests/CatalogBuiltInUpdateRequest.ts
+src/tests/CatalogExtUpdateRequest.ts
+src/tests/CatalogModelErrorRequest.ts
+src/tests/CatalogBuiltInErrorRequest.ts
+src/tests/CatalogExtErrorRequest.ts
+src/tests/CataloglnnerRequest.ts

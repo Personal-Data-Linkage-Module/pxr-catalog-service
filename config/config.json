@@ -1,0 +1,48 @@
+{
+    "code_scope": [
+        {
+            "type": "model",
+            "start_code": 1,
+            "end_code": 10000
+        },
+        {
+            "type": "built_in",
+            "start_code": 10001,
+            "end_code": 1000000
+        },
+        {
+            "type": "ext",
+            "start_code": 1000001,
+            "end_code": 10000000
+        }
+    ],
+    "publicCodes": [
+        30001,
+        30007,
+        30009,
+        30019,
+        30020,
+        30021,
+        30035,
+        30036,
+        30037,
+        30038,
+        1000371,
+        1000372,
+        1000373,
+        1000374
+    ],
+    "publicNss": [
+        "catalog/ext/{ext_name}/category/service",
+        "catalog/ext/{ext_name}/setting/global",
+        "catalog/ext/{ext_name}/actor/pxr-root",
+        "catalog/ext/{ext_name}/actor/region-root",
+        "catalog/ext/{ext_name}/actor/app",
+        "catalog/ext/{ext_name}/actor/region-root/actor_%/region",
+        "catalog/ext/{ext_name}/actor/app/actor_%/application",
+        "catalog/ext/{ext_name}/terms-of-use/platform",
+        "catalog/ext/{ext_name}/terms-of-use/region/actor_%"
+      ],
+    "timezone": "Asia/Tokyo",
+    "corePerThread": 1
+}
