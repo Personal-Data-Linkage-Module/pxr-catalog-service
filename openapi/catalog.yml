@@ -1,0 +1,19 @@
+openapi: "3.0.2"
+info:
+  title: pxr-catalog-service
+  description: |
+    ## サービス概要
+    My-Condition-Data（略称：MCD）カタログを管理するためのサービスです。
+
+    ### （注意事項）
+    - 本サービスのAPIを利用するためには、pxr-operator-serviceによる認証を通過している必要があります。
+    - 運用環境においては、本サービスのAPIへのアクセスはpxr-block-proxy経由で行う必要があります。
+  version: "1.0"
+  license:
+    name: MIT
+    url: https://licenses.opensource.jp/MIT/MIT.html
+servers:
+  - url: "/catalog"
+paths:
+  /updateSet/register:
+    $ref: "catalog_updateSet_register.yml"

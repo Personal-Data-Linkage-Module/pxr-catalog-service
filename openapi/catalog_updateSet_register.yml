@@ -1,0 +1,584 @@
+post:
+  tags:
+    - 変更セット登録
+  summary: 複数のカタログ項目を変更セットを利用して登録します。
+  description: |-
+    ## API概要
+    関連する複数のカタログ名前空間やカタログ項目を一括して登録することが可能です。
+
+    ### 【認可条件】
+    - 運営メンバーであること
+      - 運営メンバーは下記のAPIで追加する必要があります
+        - pxr-operator-service の [POST: /operator]APIをオペレータ種別(type=3)で実行
+  requestBody:
+    description: 変更セット登録の要求オブジェクト
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/UpdateSetRegisterPostReqDto"
+        examples:
+          変更セットの登録（名前空間）:
+            $ref: "#/components/examples/変更セットの登録（名前空間）_リクエスト"
+          変更セットの登録（カタログ項目）:
+            $ref: "#/components/examples/変更セットの登録（カタログ項目）_リクエスト"
+  responses:
+    200:
+      description: 変更セット登録の結果オブジェクト
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/UpdateSetRegisterPostResDto"
+          examples:
+            変更セットの登録（名前空間）:
+              $ref: "#/components/examples/変更セットの登録（名前空間）_レスポンス"
+            変更セットの登録（カタログ項目）:
+              $ref: "#/components/examples/変更セットの登録（カタログ項目）_レスポンス"
+components:
+  schemas:
+    UpdateSetRegisterPostReqDto:
+      type: object
+      description: 変更セットを利用してカタログ項目の編集を行う際の要求オブジェクト
+      properties:
+        name:
+          type: string
+          description: 変更セットの名称
+        description:
+          type: string
+          description: 変更セットの説明
+        type:
+          type: integer
+          description: ※未使用のパラメータです
+          deprecated: true
+        ns:
+          type: array
+          description: 名前空間の定義リスト
+          items:
+            $ref: "#/components/schemas/NameSpaceType"
+        catalog:
+          type: array
+          description: カタログ項目の定義リスト
+          items:
+            $ref: "#/components/schemas/CatalogType"
+        attribute:
+          type: array
+          description: ※未使用のパラメータです
+          deprecated: true
+          items: {}
+        appendix:
+          type: object
+          description: ※未使用のパラメータです
+          deprecated: true
+      required:
+        - name
+    UpdateSetRegisterPostResDto:
+      type: object
+      description: 変更セットの共通レスポンス
+      properties:
+        id:
+          type: integer
+          description: 変更セットID
+        name:
+          type: string
+          description: 変更セット名称
+        description:
+          type: string
+          description: 変更セット名称説明
+        callerActorCode:
+          type: integer
+          description: 申請元アクターコード
+        approvalActorCode:
+          type: integer
+          description: 承認アクターコード
+        approver:
+          type: string
+          description: 承認者
+        approvalAt:
+          type: string
+          description: 承認日時
+        comment:
+          type: string
+          description: 承認コメント
+        status:
+          type: integer
+          description: ステータス
+        registerActorCode:
+          type: integer
+          description: 登録アクターコード
+        registAt:
+          type: string
+          description: 登録日時
+        ns:
+          type: array
+          description: 名前空間リスト
+          items:
+            $ref: "#/components/schemas/NameSpaceType"
+        catalog:
+          type: array
+          description: カタログリスト
+          items:
+            $ref: "#/components/schemas/CatalogType"
+        attribute:
+          type: array
+          description: ※未使用のパラメータです
+          deprecated: true
+          items: {}
+        appendix:
+          type: object
+          description: ※未使用のパラメータです
+          deprecated: true
+    NameSpaceType:
+      type: object
+      description: 名前空間の定義
+      properties:
+        type:
+          type: integer
+          description: |-
+            登録種別
+
+            （注意事項）
+            - 名前空間を追加する場合は type=1 を指定する必要があります。
+            - 名前空間を更新する場合は type=2 を指定する必要があります。
+            - 名前空間を削除する場合は type=3 を指定する必要があります。
+          enum:
+            - 1
+            - 2
+            - 3
+        nsId:
+          type: integer
+          description: |-
+            名前空間に割り当てられた識別子
+
+            （注意事項）
+            - 名前空間の追加時は null である必要があります。
+            - 名前空間の更新・削除時は追加時に採番された識別子を指定する必要があります。
+              - 識別子は以下のAPIで名前空間名を指定することでも取得できます。
+                - pxr-catalog-service の [GET: /catalog/ns?ns={ns}]API
+        comment:
+          type: string
+          description: コメント
+        template:
+          type: object
+          description: 名前空間カタログのテンプレート定義
+          $ref: "#/components/schemas/NameSpace"
+      required:
+        - type
+    NameSpace:
+      type: object
+      properties:
+        ns:
+          type: string
+          description: |-
+            名前空間名
+
+            （注意事項）
+            - ns は名前空間名をフルパスで指定する必要があります。
+              - model カタログの場合
+                - catalog/model/{ns}
+              - built_in カタログの場合
+                - catalog/built_in/{ns}
+              - ext カタログの場合
+                - catalog/ext/{ext_name}/{ns}
+                - {ext_name} はカタログアクティベート時に指定した拡張名前空間名です。
+        description:
+          type: string
+          description: 名前空間の説明
+      required:
+        - ns
+    CatalogType:
+      type: object
+      description: カタログ項目の定義
+      properties:
+        type:
+          type: integer
+          description: |-
+            登録種別
+
+            （注意事項）
+            - カタログ項目を追加する場合は type=1 を指定する必要があります。
+            - カタログ項目を更新する場合は type=2 を指定する必要があります。
+            - カタログ項目を削除する場合は type=3 を指定する必要があります。
+          enum:
+            - 1
+            - 2
+            - 3
+        catalogCode:
+          type: integer
+          description: |-
+            対象のカタログ項目コード
+
+            （注意事項）
+            - カタログ項目を追加する場合は null を指定する必要があります。
+            - カタログ項目を更新・削除する場合は追加時に採番されたカタログ項目コードを指定する必要があります。
+              - カタログ項目コードは以下のAPIで名前空間名を指定することでも取得できます。
+                - pxr-catalog-service の [GET: /catalog/?ns={ns}]API
+        comment:
+          type: string
+          description: コメント
+        template:
+          type: object
+          description: 対象テンプレート
+          $ref: "#/components/schemas/Catalog"
+      required:
+        - type
+    Catalog:
+      type: object
+      description: カタログのテンプレート定義
+      properties:
+        catalogItem:
+          type: object
+          description: カタログ項目定義
+          $ref: "#/components/schemas/_common_catalogItem"
+        template:
+          type: object
+          description: 項目テンプレート
+          properties:
+            prop:
+              type: array
+              description: プロパティの定義リスト
+              items:
+                $ref: "#/components/schemas/_common_propItems"
+            value:
+              type: array
+              description: プロパティ値の代入定義リスト
+              items:
+                type: object
+                properties:
+                  key:
+                    type: string
+                    description: プロパティ名
+                  value:
+                    type: array
+                    description: 設定するプロパティ値
+                    items:
+                      $ref: "#/components/schemas/_common_tempValues"
+        inner:
+          type: array
+          description: 内部クラス定義のリスト
+          items:
+            $ref: "#/components/schemas/_common_innerItems"
+        attribute:
+          type: array
+          description: ※未使用のパラメータです
+          deprecated: true
+          items: {}
+      required:
+        - catalogItem
+    CodeVersionObject:
+      type: object
+      description: カタログ項目コード
+      properties:
+        _value:
+          type: integer
+          description: コード
+        _ver:
+          type: integer
+          description: バージョン
+      required:
+        - _value
+    _common_catalogItem:
+      type: object
+      description: カタログ項目定義
+      properties:
+        ns:
+          type: string
+          description: |-
+            カタログ項目を追加する名前空間
+
+            （注意事項）
+            - ns は名前空間名をフルパスで指定する必要があります。
+              - model カタログの場合
+                - catalog/model/{ns}
+              - built_in カタログの場合
+                - catalog/built_in/{ns}
+              - ext カタログの場合
+                - catalog/ext/{ext_name}/{ns}
+                - {ext_name} はカタログアクティベート時に指定した拡張名前空間名です。
+            - カタログ項目を追加する名前空間はすでに存在する名前空間である必要があります。
+              - 同一変更セット内で名前空間とカタログ項目を追加する場合、新規追加の名前空間を指定することが可能です。
+        name:
+          type: string
+          description: カタログ項目の名称
+        description:
+          type: string
+          description: カタログ項目の説明
+        _code:
+          type: object
+          description: |-
+            カタログ項目コード
+
+            （注意事項）
+            - カタログ項目を追加する場合、任意のコードを指定するか、自動採番するかを選択できます。
+              - 任意のコードを指定する場合、 _code._value = {任意のコード}とします。
+                - 任意のコードはカタログ種別ごとに範囲が決まっています。
+                  これは初期構築時に pxr_catalog.catalog_code_scope テーブルに設定しています。
+                  （pxr-linkage/database/pxr-catalog-service/createData.sql を参照）
+                  - model カタログの場合、1 - 10000
+                  - built_in カタログの場合、10001 - 1000000
+                  - ext カタログの場合、1000001 - 10000000
+              - 自動採番する場合、_code = null もしくは _code._value = {負の整数}とします。
+              - バージョンは _code._ver = null もしくは _code._ver = 1 とします。
+            - カタログ項目を更新・削除する場合、 _code._value は {}.catalog.catalogCode と一致させる必要があります。
+              - 更新の場合、バージョンは _code._ver = null もしくは _code._ver = {最新バージョン} とします。
+              - 削除の場合、バージョンは _code._ver = null とします。
+          allOf:
+            - $ref: "#/components/schemas/CodeVersionObject"
+        inherit:
+          type: object
+          description: |-
+            カタログ項目の継承定義
+
+            （注意事項）
+            - 既存のカタログ項目を継承する場合、継承元のカタログ項目を指定する必要があります。
+            - 継承しない場合、 inherit = null とします。
+              - または inherit._value = null もしくは inherit._value = {負の整数}とします。
+              - このとき、バージョンは inherit._ver = null とします。
+          allOf:
+            - $ref: "#/components/schemas/CodeVersionObject"
+      required:
+        - ns
+    _common_propItems:
+      type: object
+      properties:
+        key:
+          type: string
+          description: プロパティの名称
+        description:
+          type: string
+          description: プロパティの説明
+        isInherit:
+          type: boolean
+          description: ※未使用のパラメータです
+          deprecated: true
+        type:
+          type: object
+          description: |-
+            プロパティの型定義
+
+            （注意事項）
+            - type は設定するプロパティの型（of）に応じて定義必要な項目が変わります。
+              - of が number, number[], string, string[] の場合
+                - 必須：of
+                - 任意：format, unit, candidate, cmatrix
+              - of が boolean, boolean[] の場合
+                - 必須：of
+                - 任意：cmatrix
+              - of が item の場合
+                - 必須：of, _code
+                - 任意：candidate, cmatrix
+              - of が item, item[], code, code[] の場合
+                - 必須：of
+                - 任意：candidate, cmatrix
+              - of が inner, inner[] の場合
+                - 必須：of, inner
+                - 任意：candidate, cmatrix
+          properties:
+            of:
+              $ref: "#/components/schemas/_common_type_of"
+            format:
+              $ref: "#/components/schemas/_common_type_format"
+            unit:
+              $ref: "#/components/schemas/_common_type_unit"
+            _code:
+              type: object
+              description: |-
+                プロパティに設定可能なカタログ項目
+
+                （注意事項）
+                - _code はプロパティの型（of）が item の場合に設定する必要があります。
+                - プロパティの型（of）が item[] の場合はプロパティの候補値（candidate）を設定する必要があります。
+              allOf:
+                - $ref: "#/components/schemas/CodeVersionObject"
+            candidate:
+              $ref: "#/components/schemas/_common_type_candidate"
+            inner:
+              type: string
+              description: |-
+                プロパティに設定可能な内部クラス名
+
+                （注意事項）
+                - inner は {}.catalog[].template.inner で定義した内部クラスの name と一致する必要があります。
+            cmatrix:
+              type: object
+              description: |-
+                ※未使用のパラメータです
+                プロパティの CMatrix 情報
+                
+                （注意事項）
+                - 本パラメータはデータカタログ（document, event, thing）に追加する固有プロパティの index 値を設定するのに使用します。
+                  v1.0.0 時点では CMatrix 情報を使用する機能が未実装のため、本パラメータは未使用です。
+              properties:
+                index:
+                  type: string
+                  description: |-
+                    プロパティに設定する CMatrix の index 値
+                reserved:
+                  type: boolean
+                  description: |-
+                    予約済 index フラグ
+              deprecated: true
+    _common_type_of:
+      type: string
+      description: |-
+        プロパティに設定可能な型定義
+
+        （注意事項）
+        - of には以下を設定可能です。
+          string: 文字列型
+          string[]: 文字列型配列
+          number: 数値型
+          number[]: 数値型配列
+          boolean: 真偽値型
+          boolean[]: 真偽値型配列
+          item: カタログ項目型
+          item[]: カタログ項目型配列
+          inner: 内部クラス型
+          inner[]: 内部クラス型配列
+          code: カタログ項目コード型
+          code[]: カタログ項目コード型配列
+      enum:
+        - string
+        - string[]
+        - number
+        - number[]
+        - boolean
+        - boolean[]
+        - item
+        - item[]
+        - inner
+        - inner[]
+        - code
+        - code[]
+    _common_type_format:
+      type: object
+      description: |-
+        プロパティに設定可能なフォーマット定義
+
+        （注意事項）
+        - format はフォーマット定義したカタログ項目コードを指定する必要があります。
+          - フォーマットのカタログ項目は以下の名前空間に存在します。
+            - catalog/model/format
+            - catalog/built_in/format
+            - catalog/ext/{ext_name}/format
+      allOf:
+        - $ref: "#/components/schemas/CodeVersionObject"
+    _common_type_unit:
+      type: object
+      description: |-
+        プロパティに設定可能な単位定義
+
+        （注意事項）
+        - unit は単位を定義したカタログ項目コードを指定する必要があります。
+          - 単位のカタログ項目は以下の名前空間に存在します。
+            - catalog/model/unit
+            - catalog/built_in/unit
+            - catalog/ext/{ext_name}/unit
+      allOf:
+        - $ref: "#/components/schemas/CodeVersionObject"
+    _common_type_candidate:
+      type: object
+      description: |-
+        プロパティに設定可能な候補値定義
+
+        （注意事項）
+        - candidate のプロパティは以下の順で優先され、他のプロパティは無効になります。
+          - value
+          - inner
+          - ns, _code, base （これらは両立可能です）
+      properties:
+        ns:
+          type: array
+          description: |-
+            プロパティに設定可能なカタログ項目が存在する名前空間リスト
+
+            （注意事項）
+            - 名前空間の末尾にワイルドカード（*）指定が可能です。
+              - 末尾以外に指定した場合、ワイルドカード以降のパスは無視されます。
+            - 拡張名前空間（catalog/ext/{ext_name}/*）の場合、拡張名前空間名（{ext_name}）はそのまま記載可能です。
+              - 例：catalog/ext/{ext_name}/aaa/bbb
+              - 拡張名前空間名は以下のAPIでカタログのアクティベート時に登録します。
+                - pxr-catalog-service の [POST: /catalog/name]API
+              - 拡張名前空間名は以下のAPIで取得できます。
+                - pxr-catalog-service の [GET: /catalog/name]API
+          items:
+            type: string
+        _code:
+          type: array
+          description: |-
+            プロパティに設定可能なカタログ項目リスト
+          items:
+            $ref: "#/components/schemas/CodeVersionObject"
+        base:
+          type: object
+          description: |-
+            プロパティに設定可能なカタログの継承元カタログ項目
+
+            （注意事項）
+            - 本パラメータに設定したカタログ項目を継承元とするカタログ項目を設定候補値とします。
+          allOf:
+            - $ref: "#/components/schemas/CodeVersionObject"
+        inner:
+          type: array
+          description: |-
+            プロパティに設定可能な内部クラスリスト
+          items:
+            type: string
+        value:
+          type: array
+          description: |-
+            プロパティに設定可能な候補値リスト
+          items:
+            oneOf:
+              - type: string
+              - type: number
+    _common_tempValues:
+      oneOf:
+        - type: string
+        - type: number
+        - type: integer
+        - type: boolean
+        - type: object
+        - type: array
+          items: {}
+    _common_innerItems:
+      type: object
+      description: 内部クラス定義
+      properties:
+        name:
+          type: string
+          description: 内部クラス名
+        description:
+          type: string
+          description: 内部クラスの説明
+        template:
+          type: object
+          description: |-
+            内部クラスのテンプレート定義
+          properties:
+            inherit:
+              type: object
+              description: 継承定義
+              allOf:
+                - $ref: "#/components/schemas/CodeVersionObject"
+            prop:
+              type: array
+              description: プロパティ定義
+              items:
+                $ref: "#/components/schemas/_common_propItems"
+        inner:
+          type: array
+          description: |-
+            内部クラス内で定義する内部クラス
+
+            （注意事項）
+            - 内部クラス定義（_common_innerItems）と同様の構造です。
+          items: {}
+  examples:
+    変更セットの登録（名前空間）_リクエスト:
+      value: {}
+    変更セットの登録（カタログ項目）_リクエスト:
+      value: {}
+    変更セットの登録（名前空間）_レスポンス:
+      value: {}
+    変更セットの登録（カタログ項目）_レスポンス:
+      value: {}
