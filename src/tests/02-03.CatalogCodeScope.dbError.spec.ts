@@ -82,7 +82,7 @@ describe('catalog API', () => {
      */
     afterAll(async () => {
         // DB切断
-        // await common.disconnect();
+        await common.disconnect();
         // サーバ停止
         app.stop();
     });
