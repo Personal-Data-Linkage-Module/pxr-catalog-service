@@ -27,13 +27,13 @@ import { transformToNumber } from '../../common/Transform';
  * PUT: 変更セット登録変更リクエストDTO
  */
 export class CodeVersionObject {
-    @Transform(transformToNumber)
+    @Transform(({ value }) => { return transformToNumber(value); })
     @IsNumber()
     @IsNotEmpty()
     @IsDefined()
         _value: number;
 
-    @Transform(transformToNumber)
+    @Transform(({ value }) => { return transformToNumber(value); })
     @IsNumber()
     @IsDefined()
         _ver: number;
@@ -80,7 +80,7 @@ export class NameSpaceType {
 
     @IsOptional()
     @ValidateNested()
-    @Transform(template => template ? new NameSpace(template) : null)
+    @Transform(({ value }) => value ? new NameSpace(value) : null)
         template: NameSpace = null;
 
     /**
@@ -143,7 +143,7 @@ export class CatalogType {
 
     @IsOptional()
     @ValidateNested()
-    @Transform(template => template ? new Catalog(template) : null)
+    @Transform(({ value }) => value ? new Catalog(value) : null)
         template: Catalog = null;
 
     /**
@@ -308,7 +308,7 @@ export default class UpdateSetRegisterPutReqDto {
      * タイプ
      */
     @IsOptional()
-    @Transform(transformToNumber)
+    @Transform(({ value }) => { return transformToNumber(value); })
     @IsNumber()
         type: number = null;
 
@@ -318,15 +318,15 @@ export default class UpdateSetRegisterPutReqDto {
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
-    @Transform(nsList => {
+    @Transform(({ value }) => {
         let list: NameSpaceType[] = null;
-        if (nsList && Array.isArray(nsList)) {
+        if (value && Array.isArray(value)) {
             list = [];
-            for (let index = 0; index < nsList.length; index++) {
-                list.push(new NameSpaceType(nsList[index]));
+            for (let index = 0; index < value.length; index++) {
+                list.push(new NameSpaceType(value[index]));
             }
         } else {
-            return nsList;
+            return value;
         }
         return list;
     })
@@ -338,15 +338,15 @@ export default class UpdateSetRegisterPutReqDto {
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
-    @Transform(catalogList => {
+    @Transform(({ value }) => {
         let list: CatalogType[] = null;
-        if (catalogList && Array.isArray(catalogList)) {
+        if (value && Array.isArray(value)) {
             list = [];
-            for (let index = 0; index < catalogList.length; index++) {
-                list.push(new CatalogType(catalogList[index]));
+            for (let index = 0; index < value.length; index++) {
+                list.push(new CatalogType(value[index]));
             }
         } else {
-            return catalogList;
+            return value;
         }
         return list;
     })

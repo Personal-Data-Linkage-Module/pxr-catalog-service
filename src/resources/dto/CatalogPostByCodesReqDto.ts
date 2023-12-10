@@ -37,7 +37,6 @@ export class CodeObject {
 export default class CatalogPostByCodesReqDto {
     @IsDefined()
     @IsNotEmpty()
-    @IsArray({ each: true })
     // eslint-disable-next-line no-use-before-define
         _code: CodeObject = null;
 }

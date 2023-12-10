@@ -29,7 +29,6 @@ export default class CatalogFullTextGetReqDto {
 
     @IsOptional()
     @IsArray()
-    @ValidateNested({ each: true })
         namespace: string[] = null;
 
     @IsOptional()
