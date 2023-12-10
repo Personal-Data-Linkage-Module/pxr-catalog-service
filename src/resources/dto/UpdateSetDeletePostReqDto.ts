@@ -28,7 +28,7 @@ export default class UpdateSetDeletePostReqDto {
      */
     @IsDefined()
     @IsNotEmpty()
-    @Transform(id => parseInt(id))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
     @Min(1)
         id: number = null;

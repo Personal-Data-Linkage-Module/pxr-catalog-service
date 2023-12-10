@@ -27,7 +27,7 @@ import CatalogNameGetResDto from '../resources/dto/CatalogNameGetResDto';
 import CatalogNamePostResDto from '../resources/dto/CatalogNamePostResDto';
 import CatalogNamePutResDto from '../resources/dto/CatalogNamePutResDto';
 /* eslint-enable */
-import * as uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import Config from '../common/Config';
 const Message = Config.ReadConfig('./config/message.json');
 const Configure = Config.ReadConfig('./config/config.json');
@@ -83,7 +83,7 @@ export default class CatalogNameService {
         const scopeCount: number = await scopeRepository.getRecordCount(null, scopeDomain);
 
         // UUIDを取得
-        const uuidName: string = uuid();
+        const uuidName: string = uuidv4();
 
         // カタログ名称を追加
         await connection.transaction(async em => {

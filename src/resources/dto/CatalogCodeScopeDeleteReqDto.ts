@@ -23,7 +23,7 @@ import { Transform } from 'class-transformer';
 export default class CatalogCodeScopeDeleteReqDto {
     @IsDefined()
     @IsNotEmpty()
-    @Transform(id => parseInt(id))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
         id: number = null;
 }

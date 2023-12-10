@@ -24,7 +24,7 @@ import { Transform } from 'class-transformer';
 export default class CatalogDeleteReqDto {
     @IsDefined()
     @IsNotEmpty()
-    @Transform(code => parseInt(code))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
         code: number = null;
 }

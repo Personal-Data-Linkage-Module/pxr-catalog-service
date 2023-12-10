@@ -23,13 +23,13 @@ import { Transform } from 'class-transformer';
 export default class CatalogGetByCodeVersionReqDto {
     @IsDefined()
     @IsNotEmpty()
-    @Transform(code => parseInt(code))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
         code: number = null;
 
     @IsDefined()
     @IsNotEmpty()
-    @Transform(ver => parseInt(ver))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
         ver: number = null;
 }

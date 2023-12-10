@@ -120,7 +120,7 @@ export default class AttributePutReqDto {
      * コード
      */
     @IsDefined()
-    @Transform(code => parseInt(code))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
         code: number = null;
 

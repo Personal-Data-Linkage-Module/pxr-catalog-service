@@ -23,7 +23,7 @@ import { Transform } from 'class-transformer';
 export default class CatalogFullTextDeleteReqDto {
     @IsDefined()
     @IsNotEmpty()
-    @Transform(code => parseInt(code))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
         code: number = null;
 }

@@ -30,7 +30,7 @@ export default class UpdateSetApprovalPostReqDto {
      */
     @IsDefined()
     @IsNotEmpty()
-    @Transform(id => parseInt(id))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
     @Min(1)
         id: number = null;
@@ -40,7 +40,7 @@ export default class UpdateSetApprovalPostReqDto {
      */
     @IsDefined()
     @IsNotEmpty()
-    @Transform(id => parseInt(id))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
     @Min(UpdateSetStatus.APPROVAL)
     @Max(UpdateSetStatus.DENY)

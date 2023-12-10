@@ -21,13 +21,13 @@ import { Transform } from 'class-transformer';
 export class CodeObject {
     @IsDefined()
     @IsNotEmpty()
-    @Transform(_value => parseInt(_value))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
         _value: number = null;
 
     @IsDefined()
     @IsNotEmpty()
-    @Transform(_ver => parseInt(_ver))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
         _ver: number = null;
 }
