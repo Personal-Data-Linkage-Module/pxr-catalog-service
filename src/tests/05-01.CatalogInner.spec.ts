@@ -9,8 +9,8 @@ import { Session } from './Session';
 import { CatalogInnerRequest } from './CataloglnnerRequest';
 import { CatalogInnerResponse } from './CatalogInnerResponse';
 import Config from '../common/Config';
-const Message = Config.ReadConfig('./config/message.json');
 import urljoin = require('url-join');
+const Message = Config.ReadConfig('./config/message.json');
 
 // 対象アプリケーションを取得
 const app = new Application();

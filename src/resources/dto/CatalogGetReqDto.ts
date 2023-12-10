@@ -23,5 +23,5 @@ export default class CatalogGetReqDto {
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    ns: string = null;
+        ns: string = null;
 }

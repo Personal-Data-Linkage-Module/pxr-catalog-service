@@ -26,43 +26,43 @@ export default class UpdateSetAttributeEntity extends BaseEntity {
      * 変更セットID
      */
     @Column({ type: 'bigint', nullable: false, name: 'update_set_id' })
-    updateSetId: number;
+        updateSetId: number;
 
     /**
      * タイプ
      */
     @Column({ type: 'smallint', nullable: false, default: 0, name: 'type' })
-    type: number;
+        type: number;
 
     /**
      * 対象カタログコード
      */
     @Column({ type: 'bigint', nullable: true, name: 'catalog_code' })
-    catalogCode: number;
+        catalogCode: number;
 
     /**
      * コメント
      */
     @Column({ type: 'text', nullable: true, name: 'comment' })
-    comment: string;
+        comment: string;
 
     /**
      * テンプレート
      */
     @Column({ type: 'text', nullable: false, name: 'attribute' })
-    attribute: string;
+        attribute: string;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -74,7 +74,7 @@ export default class UpdateSetAttributeEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

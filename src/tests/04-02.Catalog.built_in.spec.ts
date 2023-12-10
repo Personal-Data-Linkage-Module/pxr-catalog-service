@@ -11,8 +11,8 @@ import { CatalogBuiltInResponse } from './CatalogBuiltInResponse';
 import { CatalogBuiltInUpdateRequest } from './CatalogBuiltInUpdateRequest';
 import { CatalogBuiltInUpdateResponse } from './CatalogBuiltInUpdateResponse';
 import Config from '../common/Config';
-const Message = Config.ReadConfig('./config/message.json');
 import urljoin = require('url-join');
+const Message = Config.ReadConfig('./config/message.json');
 
 // 対象アプリケーションを取得
 const app = new Application();

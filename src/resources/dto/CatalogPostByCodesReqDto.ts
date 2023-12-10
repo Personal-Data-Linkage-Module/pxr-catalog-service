@@ -23,13 +23,13 @@ export class CodeObject {
     @IsNotEmpty()
     @Transform(_value => parseInt(_value))
     @IsNumber()
-    _value: number = null;
+        _value: number = null;
 
     @IsDefined()
     @IsNotEmpty()
     @Transform(_ver => parseInt(_ver))
     @IsNumber()
-    _ver: number = null;
+        _ver: number = null;
 }
 /**
  * GET: カタログ取得のリクエストDTO
@@ -39,5 +39,5 @@ export default class CatalogPostByCodesReqDto {
     @IsNotEmpty()
     @IsArray({ each: true })
     // eslint-disable-next-line no-use-before-define
-    _code: CodeObject = null;
+        _code: CodeObject = null;
 }

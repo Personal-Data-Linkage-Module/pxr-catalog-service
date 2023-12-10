@@ -633,10 +633,12 @@ export default class CatalogService {
                     _value: Number(catalogItem.code),
                     _ver: Number(catalogItem.version)
                 },
-                inherit: catalogItem.inheritCode && catalogItem.inheritVersion ? {
-                    _value: Number(catalogItem.inheritCode),
-                    _ver: Number(catalogItem.inheritVersion)
-                } : null,
+                inherit: catalogItem.inheritCode && catalogItem.inheritVersion
+                    ? {
+                        _value: Number(catalogItem.inheritCode),
+                        _ver: Number(catalogItem.inheritVersion)
+                    }
+                    : null,
                 description: description
             };
             // テンプレート情報を生成
@@ -841,10 +843,12 @@ export default class CatalogService {
                 _value: Number(catalogItemInfo.code),
                 _ver: Number(catalogItemInfo.version)
             },
-            inherit: catalogItemInfo.inheritCode && catalogItemInfo.inheritVersion ? {
-                _value: Number(catalogItemInfo.inheritCode),
-                _ver: Number(catalogItemInfo.inheritVersion)
-            } : null,
+            inherit: catalogItemInfo.inheritCode && catalogItemInfo.inheritVersion
+                ? {
+                    _value: Number(catalogItemInfo.inheritCode),
+                    _ver: Number(catalogItemInfo.inheritVersion)
+                }
+                : null,
             description: description
         };
         // テンプレート情報を生成
@@ -1158,12 +1162,12 @@ export default class CatalogService {
                     let firstDataCheck: {} = {};
                     let cmartixNum: number = 1;
                     for (const templateKeyValue of templateKeyValues) {
-                        const resultTemplate = templateProp.templatePropertyList.find((info: TemplatePropertyEntity) => {
+                        const resultTemplate = templateProp.templatePropertyList.find((info: TemplatePropertyEntity) => { // eslint-disable-line array-callback-return
                             if (info.keyName === templateKeyValue.key) {
                                 return true;
                             }
                         });
-                        const inheritResultTemplate = allTemplatePropertyList.find((info: TemplatePropertyEntity) => {
+                        const inheritResultTemplate = allTemplatePropertyList.find((info: TemplatePropertyEntity) => { // eslint-disable-line array-callback-return
                             if (info.keyName === templateKeyValue.key) {
                                 return true;
                             }
@@ -1471,14 +1475,18 @@ export default class CatalogService {
                 type: {
                     of: templateProperty.type,
                     cmatrix: null,
-                    format: templateProperty.formatCode && templateProperty.formatVersion ? {
-                        _value: templateProperty.formatCode,
-                        _ver: templateProperty.formatVersion
-                    } : null,
-                    unit: templateProperty.unitCode && templateProperty.unitVersion ? {
-                        _value: templateProperty.unitCode,
-                        _ver: templateProperty.unitVersion
-                    } : null,
+                    format: templateProperty.formatCode && templateProperty.formatVersion
+                        ? {
+                            _value: templateProperty.formatCode,
+                            _ver: templateProperty.formatVersion
+                        }
+                        : null,
+                    unit: templateProperty.unitCode && templateProperty.unitVersion
+                        ? {
+                            _value: templateProperty.unitCode,
+                            _ver: templateProperty.unitVersion
+                        }
+                        : null,
                     candidate: null
                 },
                 description: templateProperty.description
@@ -1546,9 +1554,9 @@ export default class CatalogService {
             prop['type'].candidate = await this.createCandidate(connection, em, candidateList);
             break;
         case 'inner':
-        case 'inner[]':
+        case 'inner[]': {
             // 内部クラス名を取得
-            var innerName = await this.getInnerName(connection, em, templateProperty.id);
+            const innerName = await this.getInnerName(connection, em, templateProperty.id);
             prop = {
                 key: templateProperty.keyName,
                 type: {
@@ -1563,8 +1571,9 @@ export default class CatalogService {
             prop['type'].candidate = await this.createCandidate(connection, em, candidateList);
             break;
         }
+        }
         // cmatrixが存在している場合
-        const cmatrix = cmatrixList.find(function (value: CmatrixIndexEntity, index: number, obj: any[]) {
+        const cmatrix = cmatrixList.find(function (value: CmatrixIndexEntity, index: number, obj: any[]) { // eslint-disable-line array-callback-return
             if (value.indexKey === templateProperty.indexKey) {
                 return true;
             }

@@ -107,7 +107,7 @@ export default class UpdateSetRegisterPutValidator implements ExpressMiddlewareI
                 confirmList.push(code);
             }
             // 継承コードがマイナス値の場合
-            const refCatalogCode: CatalogType[] = dto.catalog.filter(function (info, index) {
+            const refCatalogCode: CatalogType[] = dto.catalog.filter(function (info, index) { // eslint-disable-line array-callback-return
                 if (info.template &&
                     info.template.catalogItem &&
                     info.template.catalogItem['inherit'] &&

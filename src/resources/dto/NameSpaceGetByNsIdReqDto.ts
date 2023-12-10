@@ -25,5 +25,5 @@ export default class NameSpaceGetByNsIdReqDto {
     @IsNotEmpty()
     @Transform(nsId => parseInt(nsId))
     @IsNumber()
-    nsId: number = null;
+        nsId: number = null;
 }

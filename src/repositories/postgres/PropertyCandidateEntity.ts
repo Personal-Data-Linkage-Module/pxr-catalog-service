@@ -26,73 +26,73 @@ export default class PropertyCandidateEntity extends BaseEntity {
      * プロパティ定義ID
      */
     @Column({ type: 'bigint', nullable: false, name: 'template_property_id' })
-    templatePropertyId: number;
+        templatePropertyId: number;
 
     /**
      * ネームスペースID
      */
     @Column({ type: 'bigint', nullable: true, name: 'ns_id' })
-    nsId: number;
+        nsId: number;
 
     /**
      * 子要素フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_descendant' })
-    isDescendant: boolean = false;
+        isDescendant: boolean = false;
 
     /**
      * コード
      */
     @Column({ type: 'bigint', nullable: true, name: 'code' })
-    code: number;
+        code: number;
 
     /**
      * バージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'version' })
-    version: number;
+        version: number;
 
     /**
      * 基底コード
      */
     @Column({ type: 'bigint', nullable: true, name: 'base_code' })
-    baseCode: number;
+        baseCode: number;
 
     /**
      * 基底バージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'base_version' })
-    baseVersion: number;
+        baseVersion: number;
 
     /**
      * 候補値
      */
     @Column({ type: 'text', nullable: true, name: 'value' })
-    value: string;
+        value: string;
 
     /**
      * 内部クラス
      */
     @Column({ type: 'text', nullable: true, name: 'inners' })
-    inners: string;
+        inners: string;
 
     /**
      * 説明
      */
     @Column({ type: 'text', nullable: true, name: 'description' })
-    description: string;
+        description: string;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -104,7 +104,7 @@ export default class PropertyCandidateEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

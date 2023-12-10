@@ -25,11 +25,11 @@ export default class CatalogGetByCodeVersionReqDto {
     @IsNotEmpty()
     @Transform(code => parseInt(code))
     @IsNumber()
-    code: number = null;
+        code: number = null;
 
     @IsDefined()
     @IsNotEmpty()
     @Transform(ver => parseInt(ver))
     @IsNumber()
-    ver: number = null;
+        ver: number = null;
 }

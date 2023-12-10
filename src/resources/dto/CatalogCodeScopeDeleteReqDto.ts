@@ -25,5 +25,5 @@ export default class CatalogCodeScopeDeleteReqDto {
     @IsNotEmpty()
     @Transform(id => parseInt(id))
     @IsNumber()
-    id: number = null;
+        id: number = null;
 }

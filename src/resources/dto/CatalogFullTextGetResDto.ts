@@ -9,7 +9,7 @@ export default class CatalogFullTextGetResDto {
     /**
      * 結果リスト
      */
-    list: CodeObjectDto[] = [];
+    list: CodeObjectDto[] = []; // eslint-disable-line no-use-before-define
 
     /**
      * スコア

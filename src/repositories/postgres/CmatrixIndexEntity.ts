@@ -26,43 +26,43 @@ export default class CmatrixIndexEntity extends BaseEntity {
      * カタログ項目ID
      */
     @Column({ type: 'bigint', nullable: false, name: 'catalog_item_id' })
-    catalogItemId: number;
+        catalogItemId: number;
 
     /**
      * インデックス
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'index_key' })
-    indexKey: string;
+        indexKey: string;
 
     /**
      * 値
      */
     @Column({ type: 'varchar', length: 255, nullable: true, name: 'value' })
-    value: string;
+        value: string;
 
     /**
      * 予約フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'reserved' })
-    reserved: boolean = false;
+        reserved: boolean = false;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * その他属性
      */
     @Column({ type: 'text', nullable: true, name: 'attributes' })
-    attributes: string;
+        attributes: string;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -74,7 +74,7 @@ export default class CmatrixIndexEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

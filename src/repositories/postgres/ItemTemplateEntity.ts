@@ -26,61 +26,61 @@ export default class ItemTemplateEntity extends BaseEntity {
      * カタログ項目ID
      */
     @Column({ type: 'bigint', nullable: true, name: 'catalog_item_id' })
-    catalogItemId: number;
+        catalogItemId: number;
 
     /**
      * プロパティ定義ID
      */
     @Column({ type: 'bigint', nullable: true, name: 'template_property_id' })
-    templatePropertyId: number;
+        templatePropertyId: number;
 
     /**
      * テンプレート
      */
     @Column({ type: 'text', nullable: true, name: 'template' })
-    template: string;
+        template: string;
 
     /**
      * 内部クラス名称
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'inner_name' })
-    innerName: string;
+        innerName: string;
 
     /**
      * 内部クラス継承カタログ項目コード
      */
     @Column({ type: 'bigint', nullable: true, name: 'inner_inherit_code' })
-    innerInheritCode: number;
+        innerInheritCode: number;
 
     /**
      * 内部クラス継承カタログ項目バージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'inner_inherit_version' })
-    innerInheritVersion: number;
+        innerInheritVersion: number;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * レスポンスJSON
      */
     @Column({ type: 'text', nullable: true, name: 'response' })
-    response: string;
+        response: string;
 
     /**
      * その他属性
      */
     @Column({ type: 'text', nullable: true, name: 'attributes' })
-    attributes: string;
+        attributes: string;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -92,7 +92,7 @@ export default class ItemTemplateEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

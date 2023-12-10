@@ -31,5 +31,5 @@ export default class UpdateSetDeletePostReqDto {
     @Transform(id => parseInt(id))
     @IsNumber()
     @Min(1)
-    id: number = null;
+        id: number = null;
 }

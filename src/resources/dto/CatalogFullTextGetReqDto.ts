@@ -25,15 +25,15 @@ import { Transform } from 'class-transformer';
 export default class CatalogFullTextGetReqDto {
     @IsOptional()
     @IsString()
-    keyword: string = null;
+        keyword: string = null;
 
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
-    namespace: string[] = null;
+        namespace: string[] = null;
 
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
-    attribute: {}[] = null;
+        attribute: {}[] = null;
 }

@@ -25,5 +25,5 @@ export default class CatalogFullTextDeleteReqDto {
     @IsNotEmpty()
     @Transform(code => parseInt(code))
     @IsNumber()
-    code: number = null;
+        code: number = null;
 }

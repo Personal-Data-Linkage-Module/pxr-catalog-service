@@ -32,23 +32,23 @@ export class CodeVersionObject {
     @IsNumber()
     @IsNotEmpty()
     @IsDefined()
-    _value: number;
+        _value: number;
 
     @Transform(transformToNumber)
     @IsNumber()
     @IsDefined()
-    _ver: number;
+        _ver: number;
 }
 
 export class NameSpace {
     @IsDefined()
     @IsString()
     @IsNotEmpty()
-    ns: string = null;
+        ns: string = null;
 
     @IsOptional()
     @IsString()
-    description: string = null;
+        description: string = null;
 
     /**
      * コンストラクタ
@@ -69,20 +69,20 @@ export class NameSpaceType {
     @IsNumber()
     @Min(UpdateSetType.ADD)
     @Max(UpdateSetType.DELETE)
-    type: number = null;
+        type: number = null;
 
     @IsOptional()
     @IsNumber()
-    nsId: number = null;
+        nsId: number = null;
 
     @IsOptional()
     @IsString()
-    comment: string = null;
+        comment: string = null;
 
     @IsOptional()
     @ValidateNested()
     @Transform(template => template ? new NameSpace(template) : null)
-    template: NameSpace = null;
+        template: NameSpace = null;
 
     /**
      * コンストラクタ
@@ -101,16 +101,16 @@ export class NameSpaceType {
 export class Catalog {
     @IsDefined()
     @IsNotEmpty()
-    catalogItem: {} = null;
+        catalogItem: {} = null;
 
     @IsOptional()
-    template: {} = null;
+        template: {} = null;
 
     @IsOptional()
-    inner: {} = null;
+        inner: {} = null;
 
     @IsOptional()
-    attribute: {} = null;
+        attribute: {} = null;
 
     /**
      * コンストラクタ
@@ -132,20 +132,20 @@ export class CatalogType {
     @IsNumber()
     @Min(UpdateSetType.ADD)
     @Max(UpdateSetType.DELETE)
-    type: number = null;
+        type: number = null;
 
     @IsOptional()
     @IsNumber()
-    catalogCode: number = null;
+        catalogCode: number = null;
 
     @IsOptional()
     @IsString()
-    comment: string = null;
+        comment: string = null;
 
     @IsOptional()
     @ValidateNested()
     @Transform(template => template ? new Catalog(template) : null)
-    template: Catalog = null;
+        template: Catalog = null;
 
     /**
      * コンストラクタ
@@ -166,15 +166,15 @@ export class ValueObject {
     @Type(() => CodeVersionObject)
     @ValidateNested({ each: true })
     @IsNotEmpty()
-    company: CodeVersionObject = null;
+        company: CodeVersionObject = null;
 
     @IsOptional()
     @IsString()
-    'manufacturing-name': string;
+        'manufacturing-name': string;
 
     @IsOptional()
     @IsString()
-    'model-number': string;
+        'model-number': string;
 }
 
 export class AttributeObject {
@@ -182,17 +182,17 @@ export class AttributeObject {
     @Type(() => CodeVersionObject)
     @ValidateNested({ each: true })
     @IsNotEmpty()
-    key: CodeVersionObject = null;
+        key: CodeVersionObject = null;
 
     @IsOptional()
     @Type(() => ValueObject)
     @ValidateNested({ each: true })
     @IsNotEmpty()
-    value: ValueObject = null;
+        value: ValueObject = null;
 
     @IsOptional()
     @IsString()
-    description: string = null;
+        description: string = null;
 
     /**
      * コンストラクタ
@@ -210,13 +210,13 @@ export class AttributeObject {
 export class Tag {
     @IsOptional()
     @IsString()
-    ns: string = null;
+        ns: string = null;
 
     @IsOptional()
     @Type(type => CodeVersionObject)
     @IsArray()
     @ValidateNested({ each: true })
-    values: CodeVersionObject[];
+        values: CodeVersionObject[];
 
     /**
      * コンストラクタ
@@ -235,13 +235,13 @@ export class Attribute {
     @IsArray()
     @ValidateNested({ each: true })
     @Type(() => AttributeObject)
-    objects: AttributeObject[] = null;
+        objects: AttributeObject[] = null;
 
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
     @Type(() => Tag)
-    tags: Tag[] = null;
+        tags: Tag[] = null;
 }
 
 export class AttributeType {
@@ -251,20 +251,20 @@ export class AttributeType {
     @IsNumber()
     @Min(1)
     @Max(3)
-    type: number = null;
+        type: number = null;
 
     @IsDefined()
     @IsNumber()
-    catalogCode: number = null;
+        catalogCode: number = null;
 
     @IsOptional()
     @IsString()
-    comment: string = null;
+        comment: string = null;
 
     @IsOptional()
     @ValidateNested()
     @Type(() => Attribute)
-    attribute: Attribute = null;
+        attribute: Attribute = null;
 
     /**
      * コンストラクタ
@@ -286,14 +286,14 @@ export default class UpdateSetRegisterPostReqDto {
     @IsDefined()
     @IsString()
     @IsNotEmpty()
-    name: string = null;
+        name: string = null;
 
     /**
      * 説明
      */
     @IsOptional()
     @IsString()
-    description: string = null;
+        description: string = null;
 
     /**
      * タイプ
@@ -301,7 +301,7 @@ export default class UpdateSetRegisterPostReqDto {
     @IsOptional()
     @Transform(transformToNumber)
     @IsNumber()
-    type: number = null;
+        type: number = null;
 
     /**
      * ネームスペースリスト
@@ -321,7 +321,7 @@ export default class UpdateSetRegisterPostReqDto {
         }
         return list;
     })
-    ns: NameSpaceType[] = null;
+        ns: NameSpaceType[] = null;
 
     /**
      * カタログリスト
@@ -341,7 +341,7 @@ export default class UpdateSetRegisterPostReqDto {
         }
         return list;
     })
-    catalog: CatalogType[] = null;
+        catalog: CatalogType[] = null;
 
     /**
      * 属性リスト
@@ -350,11 +350,11 @@ export default class UpdateSetRegisterPostReqDto {
     @IsArray()
     @ValidateNested({ each: true })
     @Type(() => AttributeType)
-    attribute: AttributeType[] = null;
+        attribute: AttributeType[] = null;
 
     /**
      * その他
      */
     @IsOptional()
-    appendix: {} = null;
+        appendix: {} = null;
 }

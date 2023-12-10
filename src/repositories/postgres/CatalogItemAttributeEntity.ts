@@ -26,61 +26,61 @@ export default class CatalogItemAttributeEntity extends BaseEntity {
      * カタログ項目ID
      */
     @Column({ type: 'bigint', nullable: true, name: 'catalog_item_id' })
-    catalogItemId: number;
+        catalogItemId: number;
 
     /**
      * カタログコード
      */
     @Column({ type: 'bigint', nullable: true, name: 'catalog_code' })
-    catalogCode: number;
+        catalogCode: number;
 
     /**
      * 値のタイプ(objects: 1, tags: 2)
      */
      @Column({ type: 'smallint', nullable: false, name: 'type' })
-    type: number;
+         type: number;
 
     /**
      * キー
      */
     @Column({ type: 'bigint', nullable: true, name: 'key_code' })
-    keyCode: number;
+        keyCode: number;
 
     /**
      * キー
      */
     @Column({ type: 'bigint', nullable: true, name: 'key_version' })
-    keyVersion: number;
+        keyVersion: number;
 
     /**
      * ネームスペースID
      */
     @Column({ type: 'bigint', nullable: true, name: 'ns_id' })
-    nsId: number;
+        nsId: number;
 
     /**
      * 値
      */
     @Column({ type: 'varchar', length: 255, nullable: true, name: 'value' })
-    value: string;
+        value: string;
 
     /**
      * 説明
      */
     @Column({ type: 'text', nullable: true, name: 'description' })
-    description: string;
+        description: string;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -92,7 +92,7 @@ export default class CatalogItemAttributeEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

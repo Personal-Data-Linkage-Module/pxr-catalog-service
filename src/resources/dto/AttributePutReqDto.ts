@@ -24,12 +24,12 @@ export class CodeVersionObject {
     @IsNumber()
     @IsNotEmpty()
     @IsDefined()
-    _value: number;
+        _value: number;
 
     @Transform(transformToNumber)
     @IsNumber()
     @IsDefined()
-    _ver: number;
+        _ver: number;
 }
 
 export class ValueObject {
@@ -37,15 +37,15 @@ export class ValueObject {
     @Type(() => CodeVersionObject)
     @ValidateNested({ each: true })
     @IsNotEmpty()
-    company: CodeVersionObject = null;
+        company: CodeVersionObject = null;
 
     @IsOptional()
     @IsString()
-    'manufacturing-name': string;
+        'manufacturing-name': string;
 
     @IsOptional()
     @IsString()
-    'model-number': string;
+        'model-number': string;
 }
 
 export class AttributeObject {
@@ -53,17 +53,17 @@ export class AttributeObject {
     @Type(() => CodeVersionObject)
     @ValidateNested({ each: true })
     @IsNotEmpty()
-    key: CodeVersionObject = null;
+        key: CodeVersionObject = null;
 
     @IsOptional()
     @Type(() => ValueObject)
     @ValidateNested({ each: true })
     @IsNotEmpty()
-    value: ValueObject = null;
+        value: ValueObject = null;
 
     @IsOptional()
     @IsString()
-    description: string = null;
+        description: string = null;
 
     /**
      * コンストラクタ
@@ -81,13 +81,13 @@ export class AttributeObject {
 export class Tag {
     @IsOptional()
     @IsString()
-    ns: string = null;
+        ns: string = null;
 
     @IsOptional()
     @Type(type => CodeVersionObject)
     @IsArray()
     @ValidateNested({ each: true })
-    values: CodeVersionObject[];
+        values: CodeVersionObject[];
 
     /**
      * コンストラクタ
@@ -106,13 +106,13 @@ export class Attribute {
     @IsArray()
     @ValidateNested({ each: true })
     @Type(() => AttributeObject)
-    objects: AttributeObject[] = null;
+        objects: AttributeObject[] = null;
 
     @IsOptional()
     @IsArray()
     @ValidateNested({ each: true })
     @Type(() => Tag)
-    tags: Tag[] = null;
+        tags: Tag[] = null;
 }
 
 export default class AttributePutReqDto {
@@ -122,7 +122,7 @@ export default class AttributePutReqDto {
     @IsDefined()
     @Transform(code => parseInt(code))
     @IsNumber()
-    code: number = null;
+        code: number = null;
 
     /**
      * 属性
@@ -131,5 +131,5 @@ export default class AttributePutReqDto {
     @Type(type => Attribute)
     @ValidateNested({ each: true })
     @IsNotEmpty()
-    attribute: Attribute = null;
+        attribute: Attribute = null;
 }

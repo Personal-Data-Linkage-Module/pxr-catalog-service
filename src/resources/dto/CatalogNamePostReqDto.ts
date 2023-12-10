@@ -26,16 +26,16 @@ export default class CatalogNamePostReqDto {
     @IsNotEmpty()
     @IsString()
     @MaxLength(255)
-    name: string = null;
+        name: string = null;
 
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    description: string = null;
+        description: string = null;
 
     @IsDefined()
     @IsNotEmpty()
     @IsString()
     // eslint-disable-next-line camelcase
-    ext_name: string = null;
+        ext_name: string = null;
 }

@@ -26,15 +26,15 @@ export default class CatalogGetInnerReqDto {
     @IsNotEmpty()
     @Transform(code => parseInt(code))
     @IsNumber()
-    code: number = null;
+        code: number = null;
 
     @IsOptional()
     @Transform(version => parseInt(version))
     @IsNumber()
-    version: number = null;
+        version: number = null;
 
     @IsOptional()
     @IsNotEmpty()
     @IsString()
-    name: string = null;
+        name: string = null;
 }

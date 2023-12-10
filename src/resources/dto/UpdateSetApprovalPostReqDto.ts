@@ -33,7 +33,7 @@ export default class UpdateSetApprovalPostReqDto {
     @Transform(id => parseInt(id))
     @IsNumber()
     @Min(1)
-    id: number = null;
+        id: number = null;
 
     /**
      * ステータス
@@ -44,7 +44,7 @@ export default class UpdateSetApprovalPostReqDto {
     @IsNumber()
     @Min(UpdateSetStatus.APPROVAL)
     @Max(UpdateSetStatus.DENY)
-    status: number = null;
+        status: number = null;
 
     /**
      * 承認コメント
@@ -52,5 +52,5 @@ export default class UpdateSetApprovalPostReqDto {
     @IsDefined()
     @IsString()
     @IsOptional()
-    comment: string = null;
+        comment: string = null;
 }

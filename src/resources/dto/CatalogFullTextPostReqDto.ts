@@ -25,21 +25,21 @@ export default class CatalogFullTextPostReqDto {
     @IsNotEmpty()
     @Transform(code => parseInt(code))
     @IsNumber()
-    code: number = null;
+        code: number = null;
 
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    description: string = null;
+        description: string = null;
 
     @IsDefined()
     @IsNotEmpty()
     @Transform(id => parseInt(id))
     @IsNumber()
-    id: number = null;
+        id: number = null;
 
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    name: string = null;
+        name: string = null;
 }

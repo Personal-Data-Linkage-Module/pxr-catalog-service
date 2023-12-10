@@ -15,8 +15,8 @@ import Config from '../common/Config';
 import { CatalogExtRequest } from './CatalogExtRequest';
 import { CatalogBuiltInRequest } from './CatalogBuiltInRequest';
 import { CatalogModelRequest } from './CatalogModelRequest';
-const Message = Config.ReadConfig('./config/message.json');
 import urljoin = require('url-join');
+const Message = Config.ReadConfig('./config/message.json');
 
 // テストモジュールをインポート
 jest.mock('../repositories/postgres/CatalogItemRepository', () => {
