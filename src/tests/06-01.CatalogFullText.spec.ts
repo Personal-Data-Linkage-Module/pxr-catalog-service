@@ -15,7 +15,7 @@ const Message = Config.ReadConfig('./config/message.json');
 
 // CloudSearchServiceに繋ぐurlのモック化(endpoint -> localhost:3011)
 jest.mock('../common/Config', () => ({
-    ...jest.requireActual('../common/Config'),
+    ...jest.requireActual('../common/Config') as any,
     default: {
         ReadConfig: jest.fn((path: string) => {
             const fs = require('fs');
