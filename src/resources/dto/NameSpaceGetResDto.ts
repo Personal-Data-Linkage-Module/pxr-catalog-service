@@ -9,7 +9,7 @@ export default class NameSpaceGetResDto {
     /**
      * 結果リスト
      */
-    list: NameSpaceDto[] = [];
+    list: NameSpaceDto[] = []; // eslint-disable-line no-use-before-define
 
     /**
      * データ構造取得(JSON用連想配列)

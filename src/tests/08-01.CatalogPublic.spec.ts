@@ -41,6 +41,8 @@ describe('catalog API', () => {
      * 全テスト実行後の処理
      */
     afterAll(async () => {
+        // DB切断
+        await common.disconnect();
         app.stop();
     });
 

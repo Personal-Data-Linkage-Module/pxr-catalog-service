@@ -26,61 +26,61 @@ export default class CatalogRelationshipEntity extends BaseEntity {
      * 参照元カタログ項目ID
      */
     @Column({ type: 'bigint', nullable: false, name: 'catalog_item_id' })
-    catalogItemId: number;
+        catalogItemId: number;
 
     /**
      * 参照先カタログ項目ID
      */
     @Column({ type: 'bigint', nullable: false, name: 'ref_catalog_item_id' })
-    refCatalogItemId: number;
+        refCatalogItemId: number;
 
     /**
      * 参照タイプ
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'ref_type' })
-    refType: string;
+        refType: string;
 
     /**
      * 最新取得フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_get_latest' })
-    isGetLatest: boolean = false;
+        isGetLatest: boolean = false;
 
     /**
      * 参照元項目テンプレートID
      */
     @Column({ type: 'bigint', nullable: true, name: 'item_template_id' })
-    itemTemplateId: number;
+        itemTemplateId: number;
 
     /**
      * 参照元項目テンプレートプロパティID
      */
     @Column({ type: 'bigint', nullable: true, name: 'template_property_id' })
-    templatePropertyId: number;
+        templatePropertyId: number;
 
     /**
      * 参照元プロパティ候補ID
      */
     @Column({ type: 'bigint', nullable: true, name: 'property_candidate_id' })
-    propertyCandidateId: number;
+        propertyCandidateId: number;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * その他属性
      */
     @Column({ type: 'text', nullable: true, name: 'attributes' })
-    attributes: string;
+        attributes: string;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -92,7 +92,7 @@ export default class CatalogRelationshipEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

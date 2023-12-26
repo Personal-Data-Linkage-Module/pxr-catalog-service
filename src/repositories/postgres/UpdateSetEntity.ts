@@ -26,109 +26,109 @@ export default class UpdateSetEntity extends BaseEntity {
      * 名称
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'name' })
-    name: string;
+        name: string;
 
     /**
      * 説明
      */
     @Column({ type: 'text', nullable: true, name: 'description' })
-    description: string;
+        description: string;
 
     /**
      * タイプ
      */
      @Column({ type: 'smallint', nullable: false, default: 0, name: 'type' })
-     type: number;
+         type: number;
 
     /**
      * 申請元アクターコード
      */
     @Column({ type: 'bigint', nullable: true, name: 'caller_actor_code' })
-    callerActorCode: number;
+        callerActorCode: number;
 
     /**
      * 申請元アクターバージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'caller_actor_version' })
-    callerActorVersion: number;
+        callerActorVersion: number;
 
     /**
      * 承認アクターコード
      */
     @Column({ type: 'bigint', nullable: true, name: 'approval_actor_code' })
-    approvalActorCode: number;
+        approvalActorCode: number;
 
     /**
      * 承認アクターバージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'approval_actor_version' })
-    approvalActorVersion: number;
+        approvalActorVersion: number;
 
     /**
      * 承認者
      */
     @Column({ type: 'varchar', length: 255, nullable: true, name: 'approver' })
-    approver: string;
+        approver: string;
 
     /**
      * 承認日時
      */
     @Column({ type: 'timestamp without time zone', nullable: true, name: 'approval_at' })
-    approvalAt!: Date;
+        approvalAt!: Date;
 
     /**
      * コメント
      */
     @Column({ type: 'text', nullable: true, name: 'comment' })
-    comment: string;
+        comment: string;
 
     /**
      * ステータス
      */
     @Column({ type: 'smallint', nullable: false, default: 0, name: 'status' })
-    status: number;
+        status: number;
 
     /**
      * 登録アクターコード
      */
     @Column({ type: 'bigint', nullable: true, name: 'register_actor_code' })
-    registerActorCode: number;
+        registerActorCode: number;
 
     /**
      * 登録アクターバージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'register_actor_version' })
-    registerActorVersion: number;
+        registerActorVersion: number;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: true, name: 'register' })
-    register: string;
+        register: string;
 
     /**
      * 登録日時
      */
     @Column({ type: 'timestamp without time zone', nullable: true, name: 'regist_at' })
-    registAt!: Date;
+        registAt!: Date;
 
     /**
      * その他
      */
     @Column({ type: 'text', nullable: true, name: 'appendix' })
-    appendix: string;
+        appendix: string;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -140,7 +140,7 @@ export default class UpdateSetEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

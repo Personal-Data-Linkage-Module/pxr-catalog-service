@@ -26,37 +26,37 @@ export default class CatalogEntity extends BaseEntity {
      * 名称
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'name' })
-    name: string;
+        name: string;
 
     /**
      * 説明
      */
     @Column({ type: 'text', nullable: true, name: 'description' })
-    description: string;
+        description: string;
 
     /**
      * 拡張ネームスペース
      */
     @Column({ type: 'text', nullable: false, name: 'ext_name' })
-    extName: string;
+        extName: string;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * その他属性
      */
     @Column({ type: 'text', nullable: false, name: 'attributes' })
-    attributes: string;
+        attributes: string;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -68,7 +68,7 @@ export default class CatalogEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

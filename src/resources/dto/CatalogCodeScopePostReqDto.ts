@@ -23,17 +23,17 @@ export default class CatalogCodeScopePostReqDto {
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    type: string = null;
+        type: string = null;
 
     @IsDefined()
     @IsNotEmpty()
     @IsNumber()
     // eslint-disable-next-line camelcase
-    start_code: number = null;
+        start_code: number = null;
 
     @IsDefined()
     @IsNotEmpty()
     @IsNumber()
     // eslint-disable-next-line camelcase
-    end_code: number = null;
+        end_code: number = null;
 }

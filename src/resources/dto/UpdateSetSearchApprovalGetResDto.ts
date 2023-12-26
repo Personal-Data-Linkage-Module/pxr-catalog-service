@@ -13,7 +13,7 @@ export default class UpdateSetSearchApprovalGetResDto {
     /**
      * リスト
      */
-    list: UpdateSetSearchDto[] = null;
+    list: UpdateSetSearchDto[] = null; // eslint-disable-line no-use-before-define
 
     /**
      * データ構造取得(JSON用連想配列)

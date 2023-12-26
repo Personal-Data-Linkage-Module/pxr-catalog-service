@@ -23,16 +23,16 @@ export default class CatalogNamePutReqDto {
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    name: string = null;
+        name: string = null;
 
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    description: string = null;
+        description: string = null;
 
     @IsDefined()
     @IsNotEmpty()
     @IsString()
     // eslint-disable-next-line camelcase
-    ext_name: string = null;
+        ext_name: string = null;
 }

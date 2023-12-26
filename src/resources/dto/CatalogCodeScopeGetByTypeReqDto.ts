@@ -23,5 +23,5 @@ export default class CatalogCodeScopeGetByTypeReqDto {
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    type: string = null;
+        type: string = null;
 }

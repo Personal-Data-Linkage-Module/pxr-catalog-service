@@ -125,7 +125,7 @@ export default class CatalogFullTextService {
             const tempScore: number[] = [];
             searchResultList = [];
             for (let index = 0; index < catalogList.length; index++) {
-                const listIndex: number = res.list.findIndex((info: CodeObjectDto) => {
+                const listIndex: number = res.list.findIndex((info: CodeObjectDto) => { // eslint-disable-line array-callback-return
                     if (info.code === catalogList[index].code) {
                         return true;
                     }
@@ -190,7 +190,7 @@ export default class CatalogFullTextService {
                 const tempList: CodeObjectDto[] = [];
                 const tempScore: number[] = [];
                 for (let index = 0; index < catalogList.length; index++) {
-                    const listIndex: number = res.list.findIndex((info: CodeObjectDto) => {
+                    const listIndex: number = res.list.findIndex((info: CodeObjectDto) => { // eslint-disable-line array-callback-return
                         if (info.code === catalogList[index].code) {
                             return true;
                         }

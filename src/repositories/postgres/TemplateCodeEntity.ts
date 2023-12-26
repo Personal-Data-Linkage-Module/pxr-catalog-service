@@ -26,37 +26,37 @@ export default class TemplateCodeEntity extends BaseEntity {
      * プロパティ定義ID
      */
     @Column({ type: 'bigint', nullable: false, name: 'template_property_id' })
-    templatePropertyId: number;
+        templatePropertyId: number;
 
     /**
      * コード
      */
     @Column({ type: 'bigint', nullable: true, name: 'code' })
-    code: number;
+        code: number;
 
     /**
      * バージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'version' })
-    version: number;
+        version: number;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * その他属性
      */
     @Column({ type: 'text', nullable: true, name: 'attributes' })
-    attributes: string;
+        attributes: string;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -68,7 +68,7 @@ export default class TemplateCodeEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

@@ -26,73 +26,73 @@ export default class CatalogItemEntity extends BaseEntity {
      * コード
      */
     @Column({ type: 'bigint', nullable: false, name: 'code' })
-    code: number;
+        code: number;
 
     /**
      * バージョン
      */
     @Column({ type: 'bigint', nullable: false, name: 'version' })
-    version: number;
+        version: number;
 
     /**
      * 名前空間ID
      */
     @Column({ type: 'bigint', nullable: true, name: 'ns_id' })
-    nsId: number;
+        nsId: number;
 
     /**
      * 名称
      */
     @Column({ type: 'varchar', length: 255, nullable: true, name: 'name' })
-    name: string;
+        name: string;
 
     /**
      * 説明
      */
     @Column({ type: 'text', nullable: true, name: 'description' })
-    description: string;
+        description: string;
 
     /**
      * 継承カタログ項目コード
      */
     @Column({ type: 'bigint', nullable: true, name: 'inherit_code' })
-    inheritCode: number;
+        inheritCode: number;
 
     /**
      * 継承カタログ項目バージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'inherit_version' })
-    inheritVersion: number;
+        inheritVersion: number;
 
     /**
      * 予約フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_reserved' })
-    isReserved: boolean = false;
+        isReserved: boolean = false;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * レスポンスJSON
      */
     @Column({ type: 'text', nullable: true, name: 'response' })
-    response: string;
+        response: string;
 
     /**
      * その他属性
      */
     @Column({ type: 'text', nullable: true, name: 'attributes' })
-    attributes: string;
+        attributes: string;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -104,7 +104,7 @@ export default class CatalogItemEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

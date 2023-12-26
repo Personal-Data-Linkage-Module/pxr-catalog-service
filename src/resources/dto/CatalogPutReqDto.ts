@@ -25,17 +25,17 @@ import { Transform } from 'class-transformer';
 export default class CatalogPutReqDto {
     @IsDefined()
     @IsNotEmpty()
-    catalogItem: {} = null;
+        catalogItem: {} = null;
 
     @IsDefined()
     @IsOptional()
-    template: {} = null;
+        template: {} = null;
 
     @IsDefined()
     @IsOptional()
-    inner: {} = null;
+        inner: {} = null;
 
     @IsDefined()
     @IsOptional()
-    attribute: {} = null;
+        attribute: {} = null;
 }

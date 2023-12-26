@@ -24,17 +24,17 @@ import { Transform } from 'class-transformer';
 export default class CatalogGetInnerReqDto {
     @IsDefined()
     @IsNotEmpty()
-    @Transform(code => parseInt(code))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
-    code: number = null;
+        code: number = null;
 
     @IsOptional()
-    @Transform(version => parseInt(version))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
-    version: number = null;
+        version: number = null;
 
     @IsOptional()
     @IsNotEmpty()
     @IsString()
-    name: string = null;
+        name: string = null;
 }

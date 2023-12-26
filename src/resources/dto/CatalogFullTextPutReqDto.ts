@@ -23,23 +23,23 @@ import { Transform } from 'class-transformer';
 export default class CatalogFullTextPutReqDto {
     @IsDefined()
     @IsNotEmpty()
-    @Transform(code => parseInt(code))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
-    code: number = null;
+        code: number = null;
 
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    description: string = null;
+        description: string = null;
 
     @IsDefined()
     @IsNotEmpty()
-    @Transform(id => parseInt(id))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
-    id: number = null;
+        id: number = null;
 
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    name: string = null;
+        name: string = null;
 }

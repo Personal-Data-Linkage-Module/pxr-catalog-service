@@ -23,9 +23,9 @@ export default class NameSpacePostReqDto {
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    ns: string = null;
+        ns: string = null;
 
     @IsDefined()
     @IsNotEmpty()
-    description: string = null;
+        description: string = null;
 }

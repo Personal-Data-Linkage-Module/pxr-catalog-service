@@ -26,91 +26,91 @@ export default class TemplatePropertyEntity extends BaseEntity {
      * プロパティ定義ID
      */
     @Column({ type: 'bigint', nullable: false, name: 'item_template_id' })
-    itemTemplateId: number;
+        itemTemplateId: number;
 
     /**
      * キー
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'key_name' })
-    keyName: string;
+        keyName: string;
 
     /**
      * タイプ
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'type' })
-    type: string;
+        type: string;
 
     /**
      * コード
      */
     @Column({ type: 'bigint', nullable: true, name: 'code' })
-    code: number;
+        code: number;
 
     /**
      * バージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'version' })
-    version: number;
+        version: number;
 
     /**
      * フィルター
      */
     @Column({ type: 'varchar', length: 255, nullable: true, name: 'filter' })
-    filter: string;
+        filter: string;
 
     /**
      * インデックス
      */
     @Column({ type: 'varchar', length: 255, nullable: true, name: 'index_key' })
-    indexKey: string;
+        indexKey: string;
 
     /**
      * フォーマットコード
      */
     @Column({ type: 'bigint', nullable: true, name: 'format_code' })
-    formatCode: number;
+        formatCode: number;
 
     /**
      * フォーマットバージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'format_version' })
-    formatVersion: number;
+        formatVersion: number;
 
     /**
      * 単位コード
      */
     @Column({ type: 'bigint', nullable: true, name: 'unit_code' })
-    unitCode: number;
+        unitCode: number;
 
     /**
      * 単位バージョン
      */
     @Column({ type: 'bigint', nullable: true, name: 'unit_version' })
-    unitVersion: number;
+        unitVersion: number;
 
     /**
      * 説明
      */
     @Column({ type: 'text', nullable: true, name: 'description' })
-    description: string;
+        description: string;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * その他属性
      */
     @Column({ type: 'text', nullable: true, name: 'attributes' })
-    attributes: string;
+        attributes: string;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -122,7 +122,7 @@ export default class TemplatePropertyEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

@@ -28,16 +28,16 @@ import { transformToNumber } from '../../common/Transform';
  * POST: 変更セット申請リクエストDTO
  */
 export class CodeVersionObject {
-    @Transform(transformToNumber)
+    @Transform(({ value }) => { return transformToNumber(value); })
     @IsNumber()
     @IsNotEmpty()
     @IsDefined()
-    _value: number;
+        _value: number;
 
-    @Transform(transformToNumber)
+    @Transform(({ value }) => { return transformToNumber(value); })
     @IsNumber()
     @IsDefined()
-    _ver: number;
+        _ver: number;
 }
 
 export default class UpdateSetRequestPostReqDto {
@@ -46,18 +46,18 @@ export default class UpdateSetRequestPostReqDto {
      */
     @IsDefined()
     @IsNotEmpty()
-    @Transform(id => parseInt(id))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
     @Min(1)
-    id: number = null;
+        id: number = null;
 
     /**
      * 承認アクターコードオブジェクト
      */
     @IsDefined()
     @IsNotEmpty()
-    @Transform(approvalActor => parseInt(approvalActor))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
     @Min(1)
-    approvalActor: number = null;
+        approvalActor: number = null;
 }

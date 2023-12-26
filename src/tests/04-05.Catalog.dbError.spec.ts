@@ -10,8 +10,8 @@ import { CatalogModelRequest } from './CatalogModelRequest';
 import { CatalogBuiltInRequest } from './CatalogBuiltInRequest';
 import { CatalogExtRequest } from './CatalogExtRequest';
 import Config from '../common/Config';
-const Message = Config.ReadConfig('./config/message.json');
 import urljoin = require('url-join');
+const Message = Config.ReadConfig('./config/message.json');
 
 // テストモジュールをインポート
 jest.mock('../repositories/postgres/CatalogItemRepository');
@@ -45,7 +45,7 @@ describe('catalog API', () => {
      */
     afterAll(async () => {
         // DB切断
-        // await common.disconnect();
+        await common.disconnect();
         // サーバ停止
         app.stop();
     });

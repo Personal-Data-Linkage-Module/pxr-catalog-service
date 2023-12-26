@@ -23,7 +23,7 @@ import { Transform } from 'class-transformer';
 export default class NameSpaceGetByNsIdReqDto {
     @IsDefined()
     @IsNotEmpty()
-    @Transform(nsId => parseInt(nsId))
+    @Transform(({ value }) => { return parseInt(value); })
     @IsNumber()
-    nsId: number = null;
+        nsId: number = null;
 }

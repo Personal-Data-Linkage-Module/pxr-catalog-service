@@ -23,5 +23,5 @@ export default class NameSpaceGetReqDto {
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    ns: string;
+        ns: string;
 }

@@ -26,31 +26,31 @@ export default class CatalogCodeScopeEntity extends BaseEntity {
      * タイプ
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'type' })
-    type: string;
+        type: string;
 
     /**
      * コード開始
      */
     @Column({ type: 'bigint', nullable: false, name: 'start_code' })
-    startCode: number;
+        startCode: number;
 
     /**
      * コード終了
      */
     @Column({ type: 'bigint', nullable: false, name: 'end_code' })
-    endCode: number;
+        endCode: number;
 
     /**
      * 削除フラグ
      */
     @Column({ type: 'boolean', nullable: false, default: false, name: 'is_disabled' })
-    isDisabled: boolean = false;
+        isDisabled: boolean = false;
 
     /**
      * 登録者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'created_by' })
-    createdBy: string;
+        createdBy: string;
 
     /**
      * 登録日時
@@ -62,7 +62,7 @@ export default class CatalogCodeScopeEntity extends BaseEntity {
      * 更新者
      */
     @Column({ type: 'varchar', length: 255, nullable: false, name: 'updated_by' })
-    updatedBy: string;
+        updatedBy: string;
 
     /**
      * 更新日時

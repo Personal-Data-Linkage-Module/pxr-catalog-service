@@ -15,7 +15,7 @@ https://opensource.org/licenses/mit-license.php
 import 'reflect-metadata';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import * as helmet from 'helmet';
+import helmet from 'helmet';
 import { useExpressServer, useContainer } from 'routing-controllers';
 import { Container } from 'typedi';
 import setupLogging from './Logging';
@@ -93,9 +93,9 @@ export class ExpressConfig {
         setupHealthCheck(this.app);
         // SDE-MSA-PRIN ステートレスにする （MSA-PRIN-SD-01）
 
-        this.app.use(bodyParser.json({ limit: '100mb' }));
-        this.app.use(bodyParser.urlencoded({ extended: false }));
-        this.app.use(cookieParser());
+        this.app.use(bodyParser.json({ limit: '100mb' }) as express.RequestHandler);
+        this.app.use(bodyParser.urlencoded({ extended: false }) as express.RequestHandler);
+        this.app.use(cookieParser() as express.RequestHandler);
 
         /**
          * HelmetによるHTTPヘッダーのセキュリティ対策設定
@@ -120,7 +120,7 @@ export class ExpressConfig {
         this.app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(SwaggerConfig));
 
         // SwaggerUIのアセットを静的に配布する設定
-        this.app.use('/api-docs-assets', express.static('api-docs'));
+        this.app.use('/api-docs-assets', express.static('api-docs') as express.RequestHandler);
 
         // リクエスト、レスポンスのログ出力を設定
         // this.app.use(contextService.middleware('request'));
