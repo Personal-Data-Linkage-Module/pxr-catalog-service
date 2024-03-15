@@ -85,6 +85,12 @@ export default class CatalogItemRepository {
                 sql = sql.andWhere(`(catalog_item.code, catalog_item.version) in (${conditionStr})`, params);
             }
         }
+        if (domain.versionRange.min) {
+            sql = sql.andWhere('catalog_item.version >= :min', { min: domain.versionRange.min });
+        }
+        if (domain.versionRange.max) {
+            sql = sql.andWhere('catalog_item.version <= :max', { max: domain.versionRange.max });
+        }
         sql = sql.orderBy('catalog_item.code', 'ASC')
             .addOrderBy('catalog_item.version', 'ASC');
 

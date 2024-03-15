@@ -58,6 +58,7 @@
     "INVALID_APPROVAL_ACTOR": "承認アクターが対象のアクターではありません。",
     "INVALID_CANDIDATE_CODE": "紐づけられているカタログコードが不正です(コード: %s)",
     "NOT_IMPLEMENTED_SEARCHSERVICE": "検索サービスを実装する必要があります",
+    "INVALID_VERSION_RANGE": "取得起点バージョンに終点起点バージョンより大きい値が設定されています",
     "validation": {
         "isArray": "配列ではありません",
         "isBoolean": "真偽値ではありません",

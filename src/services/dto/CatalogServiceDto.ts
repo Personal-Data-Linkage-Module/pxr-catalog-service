@@ -69,6 +69,16 @@ export default class CatalogServiceDto {
     private catalog: {} = null;
 
     /**
+     * 取得起点カタログバージョン
+     */
+    private min: number = null;
+
+    /**
+     * 取得終点カタログバージョン
+     */
+    private max: number = null;
+
+    /**
      * カタログコードリスト
      */
     private codes: CatalogPostByCodesReqDto[] = null;
@@ -151,5 +161,21 @@ export default class CatalogServiceDto {
 
     public setCodes (codes: CatalogPostByCodesReqDto[]): void {
         this.codes = codes;
+    }
+
+    public getMin (): number {
+        return this.min;
+    }
+
+    public setMin (min: number): void {
+        this.min = min;
+    }
+
+    public getMax (): number {
+        return this.max;
+    }
+
+    public setMax (max: number): void {
+        this.max = max;
     }
 }

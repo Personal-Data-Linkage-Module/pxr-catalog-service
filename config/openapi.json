@@ -279,6 +279,62 @@
                 }
             }
         },
+        "/history/{code}": {
+            "get": {
+                "tags": [
+                    "取得"
+                ],
+                "description": "指定コードのカタログについて、指定された範囲のバージョンのカタログを取得する",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "description": "取得対象カタログコード",
+                        "in": "path",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true,
+                        "example": 1
+                    },
+                    {
+                        "name": "min",
+                        "description": "取得起点カタログバージョン",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true,
+                        "example": 1
+                    },
+                    {
+                        "name": "max",
+                        "description": "取得終点カタログバージョン",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": false,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "カタログ履歴の取得に成功した際のレスポンスコード",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "description": "カタログ履歴取得のレスポンスボディ",
+                                    "items": {
+                                        "$ref": "#/components/schemas/catalogResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/{code}": {
             "get": {
                 "tags": [

@@ -56,6 +56,7 @@ import SearchService from '../common/SearchService_Stub';
 import CatalogPostByCodesReqDto, { CodeObject } from '../resources/dto/CatalogPostByCodesReqDto';
 import NameSpaceEntity from 'repositories/postgres/NameSpaceEntity';
 import { applicationLogger } from '../common/logging';
+import CatalogGetHistoryCodeResDto from '../resources/dto/CatalogGetHistoryCodeResDto';
 /* eslint-enable */
 const message = Config.ReadConfig('./config/message.json');
 const config = Config.ReadConfig('./config/config.json');
@@ -530,6 +531,39 @@ export default class CatalogService {
         return res;
     }
 
+    /**
+     * カタログ履歴取得
+     * @param dto
+     */
+    public async getCatalogHistoryCode (connection: Connection, dto: CatalogServiceDto): Promise<CatalogGetHistoryCodeResDto[]> {
+        const operator = dto.getOperator();
+        const code = dto.getCode();
+        const min = dto.getMin();
+
+        // 最新バージョンを取得
+        const catalogItemDomain = new CatalogItemDomain();
+        catalogItemDomain.code = code;
+        const catalogItemRepository = new CatalogItemRepository(connection);
+        let max = await catalogItemRepository.getMaxVersion(null, catalogItemDomain);
+        // query.maxが未指定の場合または取得した最新バージョンより大きい場合、maxに最新バージョンを設定
+        max = max && dto.getMax() && dto.getMax() < max ? dto.getMax() : max;
+
+        // バージョン範囲を設定してカタログを取得
+        const res: CatalogGetResDto = new CatalogGetResDto();
+        await connection.transaction(async em => {
+            // 各種カタログ情報から応答JSONを生成
+            const catalogList: {}[] = await this.getCatalogInfo(connection, em, null, code, null, null, operator, false, min, max);
+            for (const info of catalogList) {
+                const catalog: CatalogDto = new CatalogDto();
+                catalog.catalog = info;
+                res.list.push(catalog);
+            }
+        });
+        // カタログ情報をキー名でソートして返す
+        const ret = this.responseListSort(res.getAsJson()) as CatalogGetHistoryCodeResDto[];
+        return ret;
+    }
+
     // 以下private method
     /**
      * レスポンスソート
@@ -578,7 +612,7 @@ export default class CatalogService {
      * @param operator
      * @param includeDeleted
      */
-    private async getCatalogInfo (connection: Connection, em: EntityManager, namespace: string, code: number, version: number, codes: CodeObject[], operator: OperatorDomain, includeDeleted = false): Promise<{}[]> {
+    private async getCatalogInfo (connection: Connection, em: EntityManager, namespace: string, code: number, version: number, codes: CodeObject[], operator: OperatorDomain, includeDeleted = false, min: number = null, max: number = null): Promise<{}[]> {
         // カタログ取得開始ログ出力
 
         // 各domain, repository変数の宣言
@@ -594,6 +628,8 @@ export default class CatalogService {
         catalogItemDomain.version = version;
         catalogItemDomain.codeVersions = codes;
         catalogItemDomain.includeDeleted = includeDeleted;
+        catalogItemDomain.versionRange.min = min;
+        catalogItemDomain.versionRange.max = max;
         const catalogItemList = await catalogItemRepository.getRecord(em, catalogItemDomain);
         if (!catalogItemList || catalogItemList.length <= 0) {
             // 対象カタログが存在しない場合、エラーをthrow
