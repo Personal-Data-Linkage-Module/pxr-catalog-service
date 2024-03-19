@@ -11,6 +11,8 @@ import Config from '../common/Config';
 // import { sprintf } from 'sprintf-js';
 import request = require('request');
 const Message = Config.ReadConfig('./config/message.json');
+const dns = require('dns');
+dns.setDefaultResultOrder('ipv4first');
 /* eslint-enable */
 // const applicationLogger: log4js.Logger = log4js.getLogger('application');
 // const performance = require('perf_hooks').performance;
