@@ -18,7 +18,7 @@ https://opensource.org/licenses/mit-license.php
 /* eslint-disable */
 import { Request, Response } from 'express';
 import {
-    JsonController, Put, Body, Header, Res, Req, QueryParam, UseBefore, Get, Post, Delete
+    JsonController, Put, Body, Header, Res, Req, QueryParam, UseBefore, Get, Post, Delete, Param
 } from 'routing-controllers';
 import CatalogGetReqDto from './dto/CatalogGetReqDto';
 import CatalogGetByCodeReqDto from './dto/CatalogGetByCodeReqDto';
@@ -45,6 +45,8 @@ import CatalogGetInnerValidator from './validator/CatalogGetInnerValidator';
 import CatalogPostByCodesValidator from './validator/CatalogPostByCodesValidator';
 import { transformAndValidate } from 'class-transformer-validator';
 import CatalogPublicGetValidator from './validator/CatalogPublicGetValidator';
+import CatalogGetHistoryCodeValidator from './validator/CatalogGetHistoryCodeValidator';
+import CatalogGetHistoryCodeResDto from './dto/CatalogGetHistoryCodeResDto';
 import { getConnection } from 'typeorm';
 import AsyncLock = require('async-lock');
 
@@ -111,6 +113,36 @@ export default class CatalogController {
         const service = new CatalogService();
         const ret = await service.getPublicCatalog(serviceDto);
 
+        return ret;
+    }
+
+    /**
+     * カタログ履歴取得
+     * @param req
+     * @param dto
+     * @param res
+     */
+    @Get('/history/:code')
+    @Header('X-Content-Type-Options', 'nosniff')
+    @Header('X-XSS-Protection', '1; mode=block')
+    @Header('X-Frame-Options', 'deny')
+    // SDE-MSA-PRIN 過負荷を回避する （MSA-PRIN-ID-02）
+    @EnableSimpleBackPressure()
+    @UseBefore(CatalogGetHistoryCodeValidator)
+    async getCatalogHistoryCode (@Req() req: Request, @Res() res: Response, @Param('code') code: number, @QueryParam('min') min: number, @QueryParam('max') max?: number): Promise<CatalogGetHistoryCodeResDto[]> {
+        // オペレーターセッション情報を取得
+        const operator = await OperatorService.authMe(req);
+
+        // サービス層のDTOを生成
+        const serviceDto = new CatalogServiceDto();
+        serviceDto.setOperator(operator);
+        serviceDto.setCode(code);
+        serviceDto.setMin(min);
+        serviceDto.setMax(max);
+
+        // サービス層の処理を実行
+        const service = new CatalogService();
+        const ret = await service.getCatalogHistoryCode(getConnection('postgres'), serviceDto);
         return ret;
     }
 

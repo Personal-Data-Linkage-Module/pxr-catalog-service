@@ -47,6 +47,11 @@ export default class CatalogItemDomain {
     codeVersions: any[] = null;
 
     /**
+     * カタログバージョン範囲
+     */
+    versionRange: { min: number, max: number } = { min: null, max: null };
+
+    /**
      * ネームスペースID
      */
     nsId: number = null;
